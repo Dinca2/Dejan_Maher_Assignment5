@@ -17,6 +17,8 @@ class Sorting {
   void Heap(int table[]);
   void QuickFP(int table[], int first, int last);
   void QuickRP(int table[], int first, int last);
+  
+  void Swap(int *x, int *y);
   void Split(int table[], int first, int last);
   int GetComparisons();
 }
