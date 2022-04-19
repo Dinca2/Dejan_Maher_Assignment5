@@ -11,10 +11,12 @@ class Sorting {
   int comparisons;
   
   public:
-  void Selection(int[] table);
-  void Merge(int[] table);
-  void QuickFP(int[] table);
-  void QuickRP(int[] table);
-  void Split();
+  Sorting();
+  void Selection(int table[]);
+  void Merge(int table[]);
+  void Heap(int table[]);
+  void QuickFP(int table[], int first, int last);
+  void QuickRP(int table[], int first, int last);
+  void Split(int table[], int first, int last);
   int GetComparisons();
 }
