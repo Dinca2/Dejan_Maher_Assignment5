@@ -78,11 +78,47 @@ void Sorting::Merge(int table[], int left, int right) {
   }
 
 }
-  
-void Sorting::Heap(int table[], int maxIndex) {
 
+// main function to do heap sort
+void Sorting::Heapsort(int table[], int maxIndex) {
+    // Build heap (rearrange array)
+    for (int i = maxIndex / 2 - 1; i >= 0; i--)
+        Heap(table, maxIndex, i);
+ 
+    // One by one extract an element from heap
+    for (int i = maxIndex - 1; i > 0; i--) {
+        // Move current root to end
+        swap(table[0], table[i]);
+	
+        // call max heapify on the reduced heap
+        Heap(table, i, 0);
+    }
 }
-  
+ 
+void Sorting::Heap(int table[], int maxIndex, int subIndex) {
+    int largest = subIndex; // Initialize largest as root
+    int l = 2 * subIndex + 1; // left = 2*i + 1
+    int r = 2 * subIndex + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < maxIndex && table[l] > table[largest]) {
+        largest = l;
+	comparisons++;
+    }
+    // If right child is larger than largest so far
+    if (r < maxIndex && table[r] > table[largest]) {
+        largest = r;
+	comparisons++;
+    }
+    // If largest is not root
+    if (largest != subIndex) {
+        swap(table[subIndex], table[largest]);
+	comparisons++;
+        // Recursively heapify the affected sub-tree
+        Heap(table, maxIndex, largest);
+    }
+}
+
 void Sorting::QuickFP(int table[], int first, int last) {
 
 }

@@ -22,9 +22,10 @@ int main(int argc, char* argv[]) {
   
   Sorting test;
 
-  test.Selection(table, maxIndex);
+  //test.Selection(table, maxIndex);
   //test.Mergesort(table, 0, maxIndex);
-  for(int i = 0; i < 7; i++) {
+  test.Heapsort(table, maxIndex);
+  for(int i = 1; i < 6; i++) {
     cout << table[i] << endl;
   }
   cout << table[maxIndex - 1] << endl;
