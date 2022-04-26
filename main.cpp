@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
   while(file >> temp) {
     maxIndex++;
   }
-  file.clear();
-  file.seekg(0, ios::beg);
+  file.clear(); //clears eof/fail bits
+  file.seekg(0, ios::beg); //goes back to beginning of file
 
   int* table = new int[maxIndex];
   for(int a = 0; a < maxIndex; a++) {
@@ -21,8 +21,9 @@ int main(int argc, char* argv[]) {
   }
   
   Sorting test;
-  
+
   test.Selection(table, maxIndex);
+  //test.Mergesort(table, 0, maxIndex);
   for(int i = 0; i < 7; i++) {
     cout << table[i] << endl;
   }
