@@ -4,7 +4,7 @@ compile: main.cpp Sorting.o
 	g++ $(flags) -o main  main.cpp Sorting.o
 
 run: compile
-	./main int-input.txt
+	./main random.txt
 
 Sorting:
 	g++ $(flags) -c Sorting.cpp
