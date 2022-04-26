@@ -1,5 +1,5 @@
-#import "Sorting.h"
+#include "Sorting.h"
 
-int main(int argc, char[] argv) {
+int main(int argc, char* argv[]) {
   return 0;
 }

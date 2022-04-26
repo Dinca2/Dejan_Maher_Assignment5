@@ -8,9 +8,10 @@
 using namespace std;
 
 class Sorting {
+private:
   int comparisons;
   
-  public:
+public:
   Sorting();
   void Selection(int table[]);
   void Merge(int table[]);
@@ -21,4 +22,6 @@ class Sorting {
   void Swap(int *x, int *y);
   void Split(int table[], int first, int last);
   int GetComparisons();
-}
+};
+
+#endif
