@@ -2,6 +2,7 @@
 
 Sorting::Sorting(){
   comparisons = 0;
+  fp = false;
 }
 
 void Sorting::Selection(int table[], int maxIndex) {
@@ -9,7 +10,7 @@ void Sorting::Selection(int table[], int maxIndex) {
   int indexOfMin = 0;
   int temp = 0;
 
-  for(int i = 0; i < maxIndex - 1; i++) {
+  for(int i = 0; i < maxIndex; i++) {
     indexOfMin = i;
     for(int j = i + 1; j < maxIndex; j++) {
       if(table[j] < table[indexOfMin]) {
@@ -37,8 +38,6 @@ void Sorting::Merge(int table[], int left, int right) {
   int leftMax = mid - left + 1,
     rightMax = right - mid;
 
-  cout << "left  : " << leftMax << endl;
-  cout << "right : " << rightMax << endl;
   int *tableA = new int[leftMax], //left array
     *tableB = new int[rightMax]; //right array
 
@@ -77,6 +76,8 @@ void Sorting::Merge(int table[], int left, int right) {
     indexT++;
   }
 
+  delete[] tableA;
+  delete[] tableB;
 }
 
 // main function to do heap sort
@@ -103,7 +104,7 @@ void Sorting::Heap(int table[], int maxIndex, int subIndex) {
     // If left child is larger than root
     if (l < maxIndex && table[l] > table[largest]) {
         largest = l;
-	comparisons++;
+	//comparisons++;
     }
     // If right child is larger than largest so far
     if (r < maxIndex && table[r] > table[largest]) {
@@ -120,15 +121,76 @@ void Sorting::Heap(int table[], int maxIndex, int subIndex) {
 }
 
 void Sorting::QuickFP(int table[], int first, int last) {
-
+  fp = true;
+  Quicksort(table, first, last);
 }
   
 void Sorting::QuickRP(int table[], int first, int last) {
-
+  fp = false;
+  Quicksort(table, first, last);
 }
-  
-void Sorting::Split(int table[], int first, int last) {
 
+void Sorting::Quicksort(int table[], int first, int last) {
+  // base case
+    if(first < last) {
+      // partitioning the array
+      int s = 0;
+      if(fp) {
+	s = Split(table, first, last);
+      } else {
+	s = RandomSplit(table, first, last);
+      }
+      // Sorting the left part
+      Quicksort(table, first, s - 1);
+ 
+      // Sorting the right part
+      Quicksort(table, s + 1, last);
+    }
+}
+
+int Sorting::RandomSplit(int table[], int first, int last) {
+  srand(time(0));
+  int swapRand = first + rand() % (last - first);
+  swap(table[swapRand], table[last]);
+  return Split(table, first, last);
+}
+
+int Sorting::Split(int table[], int first, int last) {
+  int pivot = table[first];
+  
+  int count = 0;
+  for (int i = first + 1; i <= last; i++) {
+    if (table[i] <= pivot)
+      count++;
+  }
+ 
+  // Giving pivot element its correct position
+  int pivotIndex = first + count;
+  swap(table[pivotIndex], table[first]);
+  
+  // Sorting left and right parts of the pivot element
+  int i = first, j = last;
+ 
+  while (i < pivotIndex && j > pivotIndex) {
+ 
+    while (table[i] <= pivot) {
+      i++;
+      comparisons++;
+
+    }
+ 
+    while (table[j] > pivot) {
+      j--;
+      comparisons++;
+    }
+ 
+    if (i < pivotIndex && j > pivotIndex) {
+      swap(table[i++], table[j--]);
+    }
+    comparisons+=3;
+  }
+ 
+  return pivotIndex;
 }
 
 void Sorting::Swap(int *x, int *y) {

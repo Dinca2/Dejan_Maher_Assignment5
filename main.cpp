@@ -22,9 +22,13 @@ int main(int argc, char* argv[]) {
   
   Sorting test;
 
+  //merge and quick is shifted over by 1 for some reason when comapred to the other sorts
+
   //test.Selection(table, maxIndex);
-  //test.Mergesort(table, 0, maxIndex);
-  test.Heapsort(table, maxIndex);
+  //test.Mergesort(table, 0, maxIndex - 1); 
+  //test.Heapsort(table, maxIndex);
+  //test.QuickFP(table, 0, maxIndex - 1);
+  //test.QuickRP(table, 0, maxIndex - 1);
   for(int i = 1; i < 6; i++) {
     cout << table[i] << endl;
   }
