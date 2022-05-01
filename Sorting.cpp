@@ -104,21 +104,20 @@ void Sorting::Heap(int table[], int maxIndex, int subIndex) {
     // If left child is larger than root
     if (l < maxIndex && table[l] > table[largest]) {
         largest = l;
-	//comparisons++;
+	comparisons++;
     }
     // If right child is larger than largest so far
     if (r < maxIndex && table[r] > table[largest]) {
         largest = r;
-	//comparisons++;
+	comparisons++;
     }
     // If largest is not root
     if (largest != subIndex) {
         swap(table[subIndex], table[largest]);
-	//comparisons++;
+	comparisons++;
         // Recursively heapify the affected sub-tree
         Heap(table, maxIndex, largest);
     }
-    comparisons+=2;
 }
 
 void Sorting::QuickFP(int table[], int first, int last) {
